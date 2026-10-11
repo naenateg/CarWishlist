@@ -50,4 +50,35 @@ function renderWishlist()
 
 }
 
+/**Handles form submission when user clicks add new 
+* @param {Event} event - the browser submits a event object
+*/
 
+function handleAddCar(event)
+{
+    //Prevents the default form behavior (reloading the web page)
+    event.preventDefault();
+
+    //extract user data in the input fields
+    const makeInput = document.getElementById('make').value.trim();
+    const modelInput = document.getElementById('model').value.trim();
+    const yearInput = document.getElementById('year').value.trim();
+    const priceInput = document.getElementById('price').value.trim();
+    const imageUrlInput = document.getElementById('image-url').value.trim();
+
+    //create a new car object with unique ID based off of the milisecond time stamp
+    const newCar = 
+    {
+        id: Date.now.toString(),
+        make: makeInput,
+        model: modelInput,
+        year: yearInput,
+        price: priceInput,
+        imageUrl: imageUrlInput
+
+    };
+
+    
+
+
+}
