@@ -37,7 +37,7 @@ function renderWishlist()
         
         //populate internal HTML structure of the card
         cardElement.innerHTML = `
-        <img src="${car.imageUrl}" alt="${car.make}${car.model}" onerror="this.src='https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600'">
+        <img src="${car.imageUrl}" alt="${car.make} ${car.model}" onerror="this.src='https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600'">
         <div class="car-info">
         <span class="badge">${car.year}</span>
         <h3>${car.make} ${car.model}</h3>         <p class="price">$${Number(car.price).toLocaleString()}</p>
@@ -69,7 +69,7 @@ function handleAddCar(event)
     //create a new car object with unique ID based off of the milisecond time stamp
     const newCar = 
     {
-        id: Date.now.toString(),
+        id: Date.now().toString(),
         make: makeInput,
         model: modelInput,
         year: yearInput,
