@@ -34,13 +34,15 @@ function renderWishlist()
         //create a new <article> element for the car card
         const cardElement = document.createElement('article'); 
         cardElement.classList.add('car-card');
-        
+        const trimText = car.trim ? '${car.trim}' : ''; //checks if trim level exists
+
         //populate internal HTML structure of the card
         cardElement.innerHTML = `
         <img src="${car.imageUrl}" alt="${car.make} ${car.model}" onerror="this.src='https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600'">
         <div class="car-info">
         <span class="badge">${car.year}</span>
-        <h3>${car.make} ${car.model}</h3>         <p class="price">$${Number(car.price).toLocaleString()}</p>
+        <h3>${car.make} ${car.model} ${car.trim}</h3>         
+        <p class="price">$${Number(car.price).toLocaleString()}</p>
         <button class="delete-btn" onclick="deleteCar('${car.id}')">Remove</button>
         </div>
         `;
@@ -62,9 +64,23 @@ function handleAddCar(event)
     //extract user data in the input fields
     const makeInput = document.getElementById('make').value.trim();
     const modelInput = document.getElementById('model').value.trim();
-    const yearInput = document.getElementById('year').value.trim();
-    const priceInput = document.getElementById('price').value.trim();
+    const trimInput = document.getElementById('trim').value.trim();
+    const yearInput = Number(document.getElementById('year').value.trim());
+    const priceInput = Number(document.getElementById('price').value.trim());
     const imageUrlInput = document.getElementById('image-url').value.trim();
+
+    //bounds for price and year
+    if (priceInput < 0)
+    {
+        alert("Price cannot be negative!")
+        return;
+    }
+
+    if (yearInput < 1886 || yearInput > 2027)
+    {
+        alert("Please enter a valid model year (1886 - 2027.")
+        return;
+    }
 
     //create a new car object with unique ID based off of the milisecond time stamp
     const newCar = 
@@ -72,6 +88,7 @@ function handleAddCar(event)
         id: Date.now().toString(),
         make: makeInput,
         model: modelInput,
+        trim: trimInput,
         year: yearInput,
         price: priceInput,
         imageUrl: imageUrlInput
@@ -96,6 +113,12 @@ function handleAddCar(event)
 
 function deleteCar (carId)
 {
+    const isConfirmed = confirm("Are you sure you would like to delete this car from your wishlist?");
+    if (!isConfirmed)
+    {
+        return;
+    }
+
     //filter out the car whose ID matches the clicked delete button
     carWishlist = carWishlist.filter((car) => car.id !== carId)
 
