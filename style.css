@@ -1,0 +1,75 @@
+/*Global reset and base styles*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body
+{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0f172a;
+    color: #f8fafc;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+main
+{
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/*Header section*/
+header
+{
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px 0;
+}
+
+header h1
+{
+    font-size: 2.5rem;
+    color: #38bdf8;
+
+}
+
+header p
+{
+    color: #94a3b8;
+    font-size: 1.1rem;
+}
+
+/*Form container (css flexbox)*/
+
+.form-container
+{
+    background-color: #1e293b;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    margin-bottom: 40px;
+
+}
+
+.form-container h2
+{
+    margin-bottom: 16px;
+    font-size: 1.4rem;
+    color: #e2e8f0;
+}
+
+#car-form
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+#car-form input
+{
+    flex: 1 1 200px;
+    padding: 12px 16px;
+    background-color: ;
+}

@@ -7,13 +7,38 @@
 
 </head>
 <body>
-    <!--Header Section -->
+    <!--Header Section-->
     <header>
         <h1>My Car Wishlist</h1>
-        <p>Track your dreams. (Literally!)</p>
+        <p>Track my dreams. (literally!)</p>
     </header>
 
+    <main> <!--1st part, we add a form of a new car-->
+        <section class = "form-container">
+            <h2>Add a dream car</h2>
+            <form id = "car-form">
+                <input type = "number" id = "year" placeholder = "Year (ex., 1999, 2000)" required>
+                <input type = "text" id = "make" placeholder = "Make (ex., Toyota, Honda)" required>
+                <input type = "text" id = "model" placeholder = "Model (ex., Corolla, Civic)" required>
+                <input type = "text" id = "trim" placeholder = "Trim (ex., Apex, Type R)" required>
+                <input type = "number" id = "price" placeholder = "Estimated Price ($)" required>
+                <input type = "url" id = "image-url" placeholder = "Image URL (ex., https://.... )" required>
+                <button type = "submit">Add to wishlist!</button>
+            </form>
+        </section>
 
-    
+        <section class = "wishlist-container">
+            <h2>My wishlist!</h2>
+            <div id = "car-grid" class = "car-grid">
+                <article class="car-card">
+                <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=600" alt="Porsche 911 GT3">
+                <div class="car-info">
+                <h3>2024 Porsche 911 GT3</h3>
+                <p class="price">$225,000</p>
+                <button class="delete-btn">Remove</button>
+
+            </div>
+        </section>
+    </main>
 </body>
 </html>
