@@ -78,7 +78,35 @@ function handleAddCar(event)
 
     };
 
-    
+    //add the new car object to the beginning of our wishlist array 
+    carWishlist.unshift(newCar);
 
+    //save the updated array to localStorage and re-render the page
+    saveToLocalStorage();
+    renderWishlist();
+
+    //reset all form inputs to empty
+    carForm.reset();
 
 }
+
+/** Deletes a car from the wishlist by matching its unique ID 
+ * @param {string} carId
+*/
+
+function deleteCar (carId)
+{
+    //filter out the car whose ID matches the clicked delete button
+    carWishlist = carWishlist.filter((car) => car.id !== carId)
+
+    //save changes and rerender page
+    saveToLocalStorage();
+    renderWishlist();
+}
+
+//4. event listener and initialization
+//listen for form submissions and trigger handleAddCar function
+carForm.addEventListener('submit', handleAddCar);
+
+//initial call to display any existing saved cars on page load
+renderWishlist();
