@@ -1,193 +1,228 @@
-/*Global reset and base styles*/
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ==========================================================================
+   1. MINIMAL CRIMSON THEME VARIABLES
+   Central storage for theme colors so you only have to change them in one place.
+   ========================================================================== */
+:root {
+  --bg-dark: #0b0f17;          /* Page background (very dark navy/slate) */
+  --panel-bg: #151c28;         /* Card & form background (slate gray) */
+  --panel-border: #232d3f;     /* Subtle border line color */
+  --accent-red: #e11d48;       /* Primary accent color (rose-red) */
+  --accent-red-hover: #be123c; /* Darker red for button hover states */
+  --text-main: #f8fafc;        /* Main heading and primary text color */
+  --text-muted: #94a3b8;       /* Secondary text color (grayed out) */
+  --text-subtle: #64748b;      /* Placeholder text color */
 }
 
-body
-{
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #0f172a;
-    color: #f8fafc;
-    line-height: 1.6;
-    padding: 20px;
+/* ==========================================================================
+   2. GLOBAL RESET
+   Removes default browser padding/margins and standardizes box sizing.
+   ========================================================================== */
+* {
+  margin: 0;                   /* Clears default outer spacing on all elements */
+  padding: 0;                  /* Clears default inner spacing on all elements */
+  box-sizing: border-box;      /* Keeps padding/borders inside total element dimensions */
 }
 
-main
-{
-    max-width: 1100px;
-    margin: 0 auto;
+/* ==========================================================================
+   3. BODY & LAYOUT WRAPPER
+   Global styles applied to the entire page document.
+   ========================================================================== */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-dark); /* Uses the dark variable background */
+  color: var(--text-main);           /* Sets default text color to bright slate */
+  line-height: 1.6;                  /* Adds vertical space between text lines */
+  padding: 40px 20px;                /* Inner spacing: 40px top/bottom, 20px left/right */
+  min-height: 100vh;                 /* Ensures page fills at least 100% of screen height */
 }
 
-/*Header section*/
-header
-{
-    text-align: center;
-    margin-bottom: 40px;
-    padding: 20px 0;
+main {
+  max-width: 1040px;          /* Prevents page content from stretching too wide on large monitors */
+  margin: 0 auto;             /* Centers the main section horizontally on the screen */
 }
 
-header h1
-{
-    font-size: 2.5rem;
-    color: #38bdf8;
-
+/* ==========================================================================
+   4. CLEAN HEADER SECTION
+   ========================================================================== */
+header {
+  margin-bottom: 40px;                        /* Space between header and form */
+  border-bottom: 1px solid var(--panel-border);/* Divider line below header */
+  padding-bottom: 24px;                       /* Inner spacing above divider line */
 }
 
-header p
-{
-    color: #94a3b8;
-    font-size: 1.1rem;
+header h1 {
+  font-size: 2.25rem;            /* Title size (2.25x base browser font size) */
+  font-weight: 700;              /* Bold text weight */
+  letter-spacing: -0.02em;       /* Slightly tightens spacing between letters */
+  color: var(--text-main);       /* Sets color to main bright text */
+  margin-bottom: 4px;            /* Space between h1 title and subtitle */
 }
 
-/*Form container (css flexbox)*/
-
-.form-container
-{
-    background-color: #1e293b;
-    padding: 24px;
-    border-radius: 12px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-    margin-bottom: 40px;
-
+header p {
+  color: var(--text-muted);      /* Subtitle text color */
+  font-size: 1rem;               /* Standard readable text size */
 }
 
-.form-container h2
-{
-    margin-bottom: 16px;
-    font-size: 1.4rem;
-    color: #e2e8f0;
+/* ==========================================================================
+   5. FORM CONTAINER (INPUT SECTION)
+   ========================================================================== */
+.form-container {
+  background-color: var(--panel-bg); /* Dark slate panel background */
+  border: 1px solid var(--panel-border); /* Subtle border line */
+  padding: 28px;                     /* Spacing inside the form box */
+  border-radius: 12px;               /* Smoothly rounds the corners */
+  margin-bottom: 48px;               /* Space below the form section */
 }
 
-#car-form
-{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
+.form-container h2 {
+  margin-bottom: 20px;          /* Space below form section title */
+  font-size: 1.1rem;            /* Section title font size */
+  font-weight: 600;             /* Semi-bold text weight */
+  color: var(--text-muted);     /* Gray section title */
+  text-transform: uppercase;    /* Forces text to ALL CAPS */
+  letter-spacing: 0.05em;       /* Spreads letters out slightly for header feel */
 }
 
-#car-form input
-{
-    flex: 1 1 200px;
-    padding: 12px 16px;
-    background-color: #0f172a;
-    border: 1px solid #334155;
-    border-radius: 8px;
-    color: #ffffff;
-    font-size: 1rem;
-    outline: none;
-    transition: border-color 0.2 ease;
-
+/* Flexbox layout to organize form inputs side-by-side */
+#car-form {
+  display: flex;                /* Enables 1D Flexbox layout */
+  flex-wrap: wrap;              /* Wraps inputs to next line if screen is narrow */
+  gap: 14px;                    /* Consistent gap between form inputs */
 }
 
-#car-form input:focus
-{
-    border-color: #38bdf8;
-
+#car-form input {
+  flex: 1 1 200px;              /* Grow: 1, Shrink: 1, Minimum width: 200px */
+  padding: 12px 16px;           /* Inner padding for text entry space */
+  background-color: var(--bg-dark); /* Input box background */
+  border: 1px solid var(--panel-border); /* Input border */
+  border-radius: 8px;           /* Rounded input corners */
+  color: var(--text-main);      /* Color of typed text */
+  font-size: 0.95rem;           /* Input text size */
+  outline: none;                /* Removes browser default focus outline */
+  transition: border-color 0.2s ease; /* Smooth transition when clicking input */
 }
 
-#car-form button
-{
-    flex: 1 1 100%;
-    padding: 12px;
-    background-color: #38bdf8;
-    color: #0f172a;
-    font-weight: bold;
-    font-size: 1rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2 ease;
+/* Targets placeholder text inside empty inputs */
+#car-form input::placeholder {
+  color: var(--text-subtle);    /* Dimmer color for placeholder text */
 }
 
-#car-form button:hover
-{
-    background-color: #0284c7;
-    color: #ffffff;
-
+/* Style applied when user clicks into an input field */
+#car-form input:focus {
+  border-color: var(--accent-red); /* Highlights border with accent red on click */
 }
 
-/*Wishlist card grid (css grid)*/
-.wishlist-container h2
-{
-    margin-bottom: 20px;
-    font-size: 1.6rem;
+/* Submit button styling */
+#car-form button {
+  flex: 1 1 100%;               /* Forces button to take full width at bottom of form */
+  padding: 12px;                /* Vertical button height padding */
+  background-color: var(--accent-red); /* Red button background */
+  color: #ffffff;               /* White button text */
+  font-weight: 600;             /* Semi-bold text */
+  font-size: 0.95rem;           /* Text size */
+  border: none;                 /* Removes default button border */
+  border-radius: 8px;           /* Rounded corners */
+  cursor: pointer;              /* Changes mouse cursor to pointer hand on hover */
+  transition: background-color 0.2s ease; /* Smooth color change on hover */
 }
 
-/*Responsive css grid: automatically fits our columns based upon screen with*/
-.car-grid
-{
-    display: grid;
-    grid-template-columns: repeat(auto_fill, minmax(290px, 1fr));
-    gap: 24px;
+#car-form button:hover {
+  background-color: var(--accent-red-hover); /* Darker red when mouse hovers */
 }
 
-/*Individual car card style*/
-.car-card
-{
-    background-color: #1e293b;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, .2);
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2 ease, box-shadow .02s ease;
-
+/* ==========================================================================
+   6. WISHLIST CARDS GRID (LAYOUT)
+   ========================================================================== */
+.wishlist-container h2 {
+  margin-bottom: 20px;          /* Space below "My Wishlist" title */
+  font-size: 1.25rem;           /* Section heading size */
+  font-weight: 600;             /* Semi-bold weight */
 }
 
-.car-card:hover
-{
-    transform: translateY(-5px); /*Creates smooth hover elevation*/
-    box-shadow: 0 12px 20px -5px rgba(0, 0, 0, .4);
-
+/* Automatic responsive grid for car cards */
+.car-grid {
+  display: grid;                /* Enables 2D Grid layout */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive auto-fit columns */
+  gap: 24px;                    /* Gap between individual card items */
 }
 
-.car-card img
-{
-    width: 100%;
-    height: 180px;
-    object-fit: cover; /*Prevents the stretch of images*/
+/* ==========================================================================
+   7. INDIVIDUAL CAR CARD STYLES
+   ========================================================================== */
+.car-card {
+  background-color: var(--panel-bg); /* Dark slate card background */
+  border: 1px solid var(--panel-border); /* Outer card border */
+  border-radius: 12px;          /* Rounded card corners */
+  overflow: hidden;             /* Clips top corners of image to match radius */
+  display: flex;                /* Flexbox for vertical alignment inside card */
+  flex-direction: column;       /* Stacks image, text, and button vertically */
+  transition: transform 0.2s ease, border-color 0.2s ease; /* Smooth hover animation */
 }
 
-.car-info
-{
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+/* Hover effect on entire card */
+.car-card:hover {
+  transform: translateY(-4px);  /* Lifts card up by 4 pixels */
+  border-color: rgba(225, 29, 72, 0.4); /* Highlights card border in red */
 }
 
-.car-info h3
-{
-    font-size: 1.25rem;
-    margin-bottom: 8px;
-    color: #f1f5f9
+/* Car image inside card */
+.car-card img {
+  width: 100%;                  /* Forces image to stretch across card width */
+  height: 190px;                /* Fixed photo height */
+  object-fit: cover;            /* Prevents image squishing or stretching */
 }
 
-.car-info .price
-{
-    font-size: 1.1rem;
-    color: #38bdf8;
-    font-weight: 600;
-    margin-bottom: 16px;
+/* Content wrapper inside card below photo */
+.car-info {
+  padding: 20px;                /* Inner padding around text and button */
+  display: flex;                /* Flexbox container */
+  flex-direction: column;       /* Stack elements vertically */
+  flex-grow: 1;                 /* Fills vertical space so buttons align */
 }
 
-.delete-btn
-{
-    margin-top: auto; /*Pushes the button at the bottom of card*/
-    padding: 8px 12px;
-    background-color: #ef4444;
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background-color 0.2s ease;
-
+/* Small Year tag badge */
+.badge {
+  display: inline-block;        /* Fits tightly around text content */
+  align-self: flex-start;       /* Keeps badge aligned to left edge */
+  padding: 2px 8px;             /* Compact inner badge padding */
+  background-color: rgba(225, 29, 72, 0.1); /* Translucent red background */
+  color: var(--accent-red);     /* Bright red text */
+  border-radius: 4px;           /* Slightly rounded badge corners */
+  font-size: 0.75rem;           /* Small text size */
+  font-weight: 600;             /* Semi-bold weight */
+  margin-bottom: 8px;           /* Space below badge before card title */
 }
 
-.delete-btn:hover
-{
-    background-color: #dc2626;
+.car-info h3 {
+  font-size: 1.2rem;            /* Car title text size */
+  font-weight: 600;             /* Boldness weight */
+  margin-bottom: 4px;           /* Space between title and price */
+  color: var(--text-main);      /* Main text color */
+}
+
+.car-info .price {
+  font-size: 1.1rem;            /* Price text size */
+  color: var(--accent-red);     /* Accent red price color */
+  font-weight: 700;             /* Bold weight */
+  margin-bottom: 20px;          /* Space between price and remove button */
+}
+
+/* Remove button inside card */
+.delete-btn {
+  margin-top: auto;             /* Pushes button to very bottom of card */
+  padding: 8px 12px;            /* Inner button padding */
+  background-color: transparent;/* Transparent background by default */
+  color: var(--text-muted);     /* Gray muted text */
+  border: 1px solid var(--panel-border); /* Border matching card style */
+  border-radius: 6px;           /* Rounded corners */
+  cursor: pointer;              /* Pointer hand on mouse hover */
+  font-weight: 500;             /* Medium font weight */
+  font-size: 0.85rem;           /* Button text size */
+  transition: all 0.2s ease;    /* Smooth hover effect on all changed properties */
+}
+
+.delete-btn:hover {
+  background-color: rgba(225, 29, 72, 0.1); /* Subtle red tint background */
+  color: var(--accent-red);     /* Red text color on hover */
+  border-color: rgba(225, 29, 72, 0.3);     /* Highlight red border */
 }
